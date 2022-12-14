@@ -56,7 +56,7 @@ public final class Timer
     public Timer(int sampleCount)  // Violates DCL01
     {
         int powerOf2 = 32 - Integer.numberOfLeadingZeros(sampleCount - 1);
-        this.sample = new long[1 << powerOf2];
+        this.sample = new long[1 << powerOf2];  // Violates NUM01, NUM00
     }
 
     public void init()  // Violates DCL01
@@ -71,7 +71,7 @@ public final class Timer
 
     private int p(int index)
     {
-        return 1 + (index / sample.length);
+        return 1 + (index / sample.length);  // Violates NUM00, NUM02
     }
 
     public boolean running()  // Violates DCL01
@@ -91,18 +91,18 @@ public final class Timer
             maxStart = sampleStartNanos;
             max = time;
         }
-        total += time;
-        opCount += 1;
-        this.partitionCount += partitionCount;
-        this.rowCount += rowCount;
+        total += time;  // Violates NUM00
+        opCount += 1;  // Violates NUM00
+        this.partitionCount += partitionCount; // Violates NUM00
+        this.rowCount += rowCount;  // Violates NUM00
         if (error)
-            this.errorCount++;
+            this.errorCount++;  // Violates NUM00
         upToDateAsOf = now;
     }
 
     private int index(int count)
     {
-        return count & (sample.length - 1);
+        return count & (sample.length - 1);  // Violates NUM00, NUM01
     }
 
     private TimingInterval buildReport()

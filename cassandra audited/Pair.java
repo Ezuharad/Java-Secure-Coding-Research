@@ -26,7 +26,7 @@ public class Pair<T1, T2>
 
     protected Pair(T1 left, T2 right)  // Violates DCL01
     {
-        this.left = left;
+        this.left = left;  // Violates EXP02
         this.right = right;
     }
 

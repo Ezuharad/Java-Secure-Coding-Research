@@ -46,7 +46,7 @@ public class AuthenticatedUser
 
     public AuthenticatedUser(String name)
     {
-        this.name = name;
+        this.name = name;  // Violates EXP01
         this.role = RoleResource.role(name);
     }
 

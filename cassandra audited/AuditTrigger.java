@@ -43,7 +43,7 @@ public class AuditTrigger implements ITrigger
                                                       FBUtilities.timestampMicros(),
                                                       UUIDGen.getTimeUUID());
 
-        audit.add("keyspace_name", update.metadata().ksName);
+        audit.add("keyspace_name", update.metadata().ksName);  // Violates EXP02
         audit.add("table_name", update.metadata().cfName);
         audit.add("primary_key", update.metadata().getKeyValidator().getString(update.partitionKey().getKey()));
 

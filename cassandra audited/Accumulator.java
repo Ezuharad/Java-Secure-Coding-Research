@@ -57,7 +57,7 @@ public class Accumulator<E> implements Iterable<E>
             insertPos = nextIndex;
             if (insertPos >= values.length)
                 throw new IllegalStateException();
-            if (nextIndexUpdater.compareAndSet(this, insertPos, insertPos + 1))
+            if (nextIndexUpdater.compareAndSet(this, insertPos, insertPos + 1))  // Violates NUM00
                 break;
         }
         values[insertPos] = item;
@@ -118,7 +118,7 @@ public class Accumulator<E> implements Iterable<E>
 
             public E next()
             {
-                return (E) values[p++];
+                return (E) values[p++];  // Violates NUM00
             }
 
             public void remove()
